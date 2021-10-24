@@ -42,14 +42,15 @@ buildNav();
 // build the nav
 
 function createLlink(textNode, sectionId){
-    var a = document.createElement('a'); 
-    var link = document.createTextNode(textNode);
+    let a = document.createElement('a'); 
+    let link = document.createTextNode(textNode);
     a.appendChild(link);
     a.href = "#"+sectionId;
     a.classList.add('menu__link');
 
     return a;
 }
+
 function buildNav(){
     for(const section of sections){
         const li = document.createElement('li');
@@ -67,7 +68,7 @@ function buildNav(){
 // Add class 'active' to section when near top of viewport
 
 
-// Scroll to anchor ID using scrollTO event
+// Scroll to anchor ID using scrollTO event and set sections and nav items as active
 
 window.addEventListener('scroll', function(){
     for(const section of sections){
@@ -86,13 +87,6 @@ window.addEventListener('scroll', function(){
     }
 });
 
-navbarList.addEventListener("click", function(e){
-    e.preventDefault();
-    const dataNav = e.target.parentElement.getAttribute("data-nav");
-    console.log(dataNav);
-    const sectionId = document.getElementById(dataNav);
-    sectionId.scrollIntoView({behavior: "smooth", block: "center"});
-});
 
 /**
  * End Main Functions
@@ -100,10 +94,12 @@ navbarList.addEventListener("click", function(e){
  * 
 */
 
-// Build menu 
-
 // Scroll to section on link click
 
-// Set sections as active
-
-
+navbarList.addEventListener("click", function(e){
+    e.preventDefault();
+    const dataNav = e.target.parentElement.getAttribute("data-nav");
+    console.log(dataNav);
+    const sectionId = document.getElementById(dataNav);
+    sectionId.scrollIntoView({behavior: "smooth", block: "center"});
+});
